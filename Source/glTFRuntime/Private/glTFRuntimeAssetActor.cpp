@@ -25,11 +25,8 @@ AglTFRuntimeAssetActor::AglTFRuntimeAssetActor()
 	bForceSkinnedMeshToRoot = false;
 }
 
-// Called when the game starts or when spawned
-void AglTFRuntimeAssetActor::BeginPlay()
+void AglTFRuntimeAssetActor::LoadAsset()
 {
-	Super::BeginPlay();
-
 	if (!Asset)
 	{
 		return;
