@@ -11,15 +11,12 @@ UCLASS()
 class GLTFRUNTIME_API AglTFRuntimeAssetActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AglTFRuntimeAssetActor();
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	virtual void ProcessNode(USceneComponent* NodeParentComponent, FglTFRuntimeNode& Node);
 
 	TMap<USceneComponent*, float>  CurveBasedAnimationsTimeTracker;
@@ -35,7 +32,7 @@ protected:
 		return MakeUniqueObjectName(this, T::StaticClass(), *Node.Name);
 	}
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -59,6 +56,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "glTFRuntime")
 	void SetCurveAnimationByName(const FString& CurveAnimationName);
+
+	virtual void LoadAsset();
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"), Category="glTFRuntime")

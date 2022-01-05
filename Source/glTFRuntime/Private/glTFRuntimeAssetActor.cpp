@@ -16,11 +16,8 @@ AglTFRuntimeAssetActor::AglTFRuntimeAssetActor()
 	RootComponent = AssetRoot;
 }
 
-// Called when the game starts or when spawned
-void AglTFRuntimeAssetActor::BeginPlay()
+void AglTFRuntimeAssetActor::LoadAsset()
 {
-	Super::BeginPlay();
-
 	if (!Asset)
 	{
 		return;
