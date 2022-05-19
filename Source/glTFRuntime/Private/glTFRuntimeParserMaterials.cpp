@@ -380,7 +380,7 @@ UMaterialInterface* FglTFRuntimeParser::BuildMaterial(const int32 Index, const F
 		return UMaterial::GetDefaultMaterial(EMaterialDomain::MD_Surface);
 	}
 
-	UMaterialInstanceDynamic* Material = UMaterialInstanceDynamic::Create(BaseMaterial, BaseMaterial);
+	UMaterialInstanceDynamic* Material = UMaterialInstanceDynamic::Create(BaseMaterial, BaseMaterial, FName(MaterialName));
 	if (!Material)
 	{
 		AddError("BuildMaterial()", "Unable to create material instance, falling back to default material");
