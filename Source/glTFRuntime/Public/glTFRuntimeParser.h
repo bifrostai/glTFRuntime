@@ -341,7 +341,7 @@ struct FglTFRuntimeMaterialsConfig
 		CacheMode = EglTFRuntimeCacheMode::ReadWrite;
 		bGeneratesMipMaps = false;
 		bMergeSectionsByMaterial = false;
-		SpecularFactor = 0;
+		SpecularFactor = 0.5;
 		bDisableVertexColors = false;
 		bMaterialsOverrideMapInjectParams = false;
 	}
