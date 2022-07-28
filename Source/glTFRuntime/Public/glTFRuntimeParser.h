@@ -27,7 +27,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FglTFRuntimeOnSkeletalMeshCreated, U
 /*
 * Credits for giving me the idea for the blob structure
 * definitely go to Benjamin MICHEL (SBRK)
-* 
+*
 */
 struct FglTFRuntimeBlob
 {
@@ -353,7 +353,7 @@ struct FglTFRuntimeImagesConfig
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "glTFRuntime")
 	TEnumAsByte<TextureCompressionSettings> Compression;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "glTFRuntime")
 	TEnumAsByte<TextureGroup> Group;
 
@@ -457,7 +457,7 @@ struct FglTFRuntimeMaterialsConfig
 		CacheMode = EglTFRuntimeCacheMode::ReadWrite;
 		bGeneratesMipMaps = false;
 		bMergeSectionsByMaterial = false;
-		SpecularFactor = 0;
+		SpecularFactor = 0.5;
 		bDisableVertexColors = false;
 		bMaterialsOverrideMapInjectParams = false;
 		bSkipLoad = false;
@@ -1555,7 +1555,7 @@ public:
 	static FglTFRuntimeOnFinalizedStaticMesh OnFinalizedStaticMesh;
 
 	const FglTFRuntimeBlob* GetAdditionalBufferView(const int64 Index, const FString& Name) const;
-	
+
 	void AddAdditionalBufferView(const int64 Index, const FString& Name, const FglTFRuntimeBlob& Blob);
 
 	template<typename T>
