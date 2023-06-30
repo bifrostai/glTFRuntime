@@ -11,25 +11,25 @@ UCLASS()
 class GLTFRUNTIME_API AglTFRuntimeAssetActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AglTFRuntimeAssetActor();
 
-protected:
 	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	virtual void LoadAsset();
 
+protected:
 	virtual void ProcessNode(USceneComponent* NodeParentComponent, const FName SocketName, FglTFRuntimeNode& Node);
 
-	TMap<USceneComponent*, float>  CurveBasedAnimationsTimeTracker;
+	TMap<USceneComponent*, float> CurveBasedAnimationsTimeTracker;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "glTFRuntime")
 	TSet<FString> DiscoveredCurveAnimationsNames;
 
 	TMap<USceneComponent*, TMap<FString, UglTFRuntimeAnimationCurve*>> DiscoveredCurveAnimations;
 
-	template<typename T>
+	template <typename T>
 	FName GetSafeNodeName(const FglTFRuntimeNode& Node)
 	{
 		return MakeUniqueObjectName(this, T::StaticClass(), *Node.Name);
@@ -38,7 +38,7 @@ protected:
 	TMap<USceneComponent*, FName> SocketMapping;
 	TArray<USkeletalMeshComponent*> DiscoveredSkeletalMeshComponents;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
