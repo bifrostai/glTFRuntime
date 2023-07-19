@@ -1619,6 +1619,8 @@ public:
 	FVector4 GetJsonObjectVector4(TSharedRef<FJsonObject> JsonObject, const FString& FieldName, const FVector4 DefaultValue);
 
 	bool GetRootBoneIndex(TSharedRef<FJsonObject> JsonSkinObject, int64& RootBoneIndex, TArray<int32>& Joints, const FglTFRuntimeSkeletonConfig& SkeletonConfig);
+	TMap<int32, UTexture2D*>& GetTexturesCache();
+
 protected:
 	TSharedRef<FJsonObject> Root;
 
