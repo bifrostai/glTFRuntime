@@ -1907,6 +1907,11 @@ bool FglTFRuntimeParser::GetRootBoneIndex(TSharedRef<FJsonObject> JsonSkinObject
 	return true;
 }
 
+TMap<int32, UTexture2D*>& FglTFRuntimeParser::GetTexturesCache()
+{
+	return TexturesCache;
+}
+
 bool FglTFRuntimeParser::FillReferenceSkeleton(TSharedRef<FJsonObject> JsonSkinObject, FReferenceSkeleton& RefSkeleton, TMap<int32, FName>& BoneMap, const FglTFRuntimeSkeletonConfig& SkeletonConfig)
 {
 	int64 RootBoneIndex = INDEX_NONE;
