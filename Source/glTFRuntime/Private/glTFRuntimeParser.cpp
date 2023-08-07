@@ -1912,6 +1912,11 @@ TMap<int32, UTexture2D*>& FglTFRuntimeParser::GetTexturesCache()
 	return TexturesCache;
 }
 
+TMap<TSharedRef<FJsonObject>, FglTFRuntimeMeshLOD>& FglTFRuntimeParser::GetLODsCache()
+{
+	return LODsCache;
+}
+
 bool FglTFRuntimeParser::FillReferenceSkeleton(TSharedRef<FJsonObject> JsonSkinObject, FReferenceSkeleton& RefSkeleton, TMap<int32, FName>& BoneMap, const FglTFRuntimeSkeletonConfig& SkeletonConfig)
 {
 	int64 RootBoneIndex = INDEX_NONE;
