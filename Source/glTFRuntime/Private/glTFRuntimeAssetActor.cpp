@@ -29,7 +29,7 @@ AglTFRuntimeAssetActor::AglTFRuntimeAssetActor()
 // Called when the game starts or when spawned
 void AglTFRuntimeAssetActor::LoadAsset()
 {
-	Super::BeginPlay();
+	Super::DispatchBeginPlay();
 
 	if (!Asset)
 	{
