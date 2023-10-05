@@ -54,4 +54,8 @@ public:
     void AddRotationValue(const float InTime, const FVector InEulerRotation, const ERichCurveInterpMode InterpolationMode);
     void AddScaleValue(const float InTime, const FVector InScale, const ERichCurveInterpMode InterpolationMode);
     void SetDefaultValues(const FVector Location, const FVector EulerRotation, const FVector Scale);
+
+	const FRichCurve GetRotationCurves(int32 index);
+	const FRichCurve GetLocationCurves(int32 index);
+	const FRichCurve GetScaleCurves(int32 index);
 };

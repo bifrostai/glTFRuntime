@@ -69,6 +69,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "glTFRuntime")
 	void SetCurveAnimationByName(const FString& CurveAnimationName);
 
+	UFUNCTION(BlueprintCallable, Category = "glTFRuntime")
+	void SetCurveAnimationTimeTracker(USceneComponent* comp, const float& Time);
+
+	UFUNCTION(BlueprintCallable, Category = "glTFRuntime")
+	const TArray<FString> GetAnimationNames();
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Meta = (ExposeOnSpawn = true), Category = "glTFRuntime")
 	bool bAllowNodeAnimations;
 
