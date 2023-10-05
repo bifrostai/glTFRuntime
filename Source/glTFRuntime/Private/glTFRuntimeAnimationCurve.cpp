@@ -140,3 +140,23 @@ void UglTFRuntimeAnimationCurve::AddScaleValue(const float InTime, const FVector
 	FKeyHandle ScaleKey2 = ScaleCurves[2].AddKey(InTime, InScale.Z);
 	ScaleCurves[2].SetKeyInterpMode(ScaleKey2, InterpolationMode);
 }
+
+
+const FRichCurve UglTFRuntimeAnimationCurve::GetRotationCurves(int32 index) {
+	if (index >= 3) {
+		return FRichCurve();
+	}
+	return RotationCurves[index];
+}
+const FRichCurve UglTFRuntimeAnimationCurve::GetLocationCurves(int32 index) {
+	if (index >= 3) {
+		return FRichCurve();
+	}
+	return LocationCurves[index];
+}
+const FRichCurve UglTFRuntimeAnimationCurve::GetScaleCurves(int32 index) {
+	if (index >= 3) {
+		return FRichCurve();
+	}
+	return ScaleCurves[index];
+}
