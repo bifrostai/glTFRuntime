@@ -411,10 +411,18 @@ void AglTFRuntimeAssetActor::Tick(float DeltaTime)
 			FTransform FrameTransform = Pair.Value->GetTransformValue(CurveBasedAnimationsTimeTracker[Pair.Key]);
 			Pair.Key->SetRelativeTransform(FrameTransform);
 		}
-		CurveBasedAnimationsTimeTracker[Pair.Key] += DeltaTime;
+		//CurveBasedAnimationsTimeTracker[Pair.Key] += DeltaTime;
 	}
 }
 
 void AglTFRuntimeAssetActor::ReceiveOnStaticMeshComponentCreated_Implementation(UStaticMeshComponent* StaticMeshComponent, const FglTFRuntimeNode& Node) {}
 
 void AglTFRuntimeAssetActor::ReceiveOnSkeletalMeshComponentCreated_Implementation(USkeletalMeshComponent* SkeletalMeshComponent, const FglTFRuntimeNode& Node) {}
+
+void AglTFRuntimeAssetActor::SetCurveAnimationTimeTracker(USceneComponent* comp, const float& Time) {
+	CurveBasedAnimationsTimeTracker[comp] = Time;
+}
+
+const TArray<FString> AglTFRuntimeAssetActor::GetAnimationNames() {
+	return DiscoveredCurveAnimationsNames.Array();
+}
