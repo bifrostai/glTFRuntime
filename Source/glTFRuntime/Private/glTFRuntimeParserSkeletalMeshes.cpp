@@ -1975,12 +1975,19 @@ UAnimSequence* FglTFRuntimeParser::LoadSkeletalAnimation(USkeletalMesh * Skeleta
 	}
 
 #if WITH_EDITOR
-#if ENGINE_MAJOR_VERSION > 4
+	#if ENGINE_MAJOR_VERSION >= 5
+		#if ENGINE_MINOR_VERSION >= 2
+	AnimSequence->GetController().SetFrameRate(FrameRate, false);
+	AnimSequence->GetController().SetNumberOfFrames(NumFrames);
+	AnimSequence->GetController().NotifyPopulated();
+	AnimSequence->GetController().CloseBracket(false);
+		#else
 	// hack for calling GenerateTransientData()
 	AnimSequence->GetDataModel()->PostDuplicate(false);
-#else
+		#endif
+	#else
 	AnimSequence->PostProcessSequence();
-#endif
+	#endif
 #else
 	AnimSequence->CompressedData.CompressedDataStructure = MakeUnique<FUECompressedAnimData>();
 #if ENGINE_MAJOR_VERSION > 4
@@ -2161,12 +2168,19 @@ UAnimSequence* FglTFRuntimeParser::CreateAnimationFromPose(USkeletalMesh * Skele
 	}
 
 #if WITH_EDITOR
-#if ENGINE_MAJOR_VERSION > 4
+	#if ENGINE_MAJOR_VERSION >= 5
+		#if ENGINE_MINOR_VERSION >= 2
+			AnimSequence->GetController().SetFrameRate(FrameRate, false);
+			AnimSequence->GetController().SetNumberOfFrames(NumFrames);
+			AnimSequence->GetController().NotifyPopulated();
+			AnimSequence->GetController().CloseBracket(false);
+		#else
 	// hack for calling GenerateTransientData()
 	AnimSequence->GetDataModel()->PostDuplicate(false);
-#else
-	AnimSequence->PostProcessSequence();
-#endif
+		#endif
+	#else
+		AnimSequence->PostProcessSequence();
+	#endif
 #else
 	AnimSequence->CompressedData.CompressedDataStructure = MakeUnique<FUECompressedAnimData>();
 #if ENGINE_MAJOR_VERSION > 4
@@ -2351,12 +2365,19 @@ UAnimSequence* FglTFRuntimeParser::CreateSkeletalAnimationFromPath(USkeletalMesh
 	}
 
 #if WITH_EDITOR
-#if ENGINE_MAJOR_VERSION > 4
+	#if ENGINE_MAJOR_VERSION >= 5
+		#if ENGINE_MINOR_VERSION >= 2
+	AnimSequence->GetController().SetFrameRate(FrameRate, false);
+	AnimSequence->GetController().SetNumberOfFrames(NumFrames);
+	AnimSequence->GetController().NotifyPopulated();
+	AnimSequence->GetController().CloseBracket(false);
+		#else
 	// hack for calling GenerateTransientData()
 	AnimSequence->GetDataModel()->PostDuplicate(false);
-#else
+		#endif
+	#else
 	AnimSequence->PostProcessSequence();
-#endif
+	#endif
 #else
 	UglTFAnimBoneCompressionCodec* CompressionCodec = NewObject<UglTFAnimBoneCompressionCodec>();
 	AnimSequence->CompressedData.CompressedDataStructure = MakeUnique<FUECompressedAnimData>();

@@ -27,6 +27,11 @@ public:
 		RuntimeAudioOffset = 0;
 	}
 
+	TUniquePtr<Audio::IProxyData> CreateNewProxyData(const Audio::FProxyDataInitParams& InitParams)
+	{
+		return nullptr;
+	}
+
 protected:
 	TArray64<uint8> RuntimeAudioData;
 	int64 RuntimeAudioOffset;
