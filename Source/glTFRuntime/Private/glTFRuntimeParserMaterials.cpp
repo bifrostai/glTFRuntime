@@ -292,7 +292,7 @@ UTexture2D* FglTFRuntimeParser::BuildTexture(UObject* Outer, const TArray<FglTFR
 	Texture->PlatformData = PlatformData;
 #endif
 
-	Texture->NeverStream = true;
+	Texture->NeverStream = ImagesConfig.bNeverStream;
 
 	for (const FglTFRuntimeMipMap& MipMap : Mips)
 	{

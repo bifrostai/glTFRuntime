@@ -378,6 +378,9 @@ struct FglTFRuntimeImagesConfig
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "glTFRuntime")
 	int32 MaxHeight;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "glTFRuntime")
+	bool bNeverStream;
+
 	FglTFRuntimeImagesConfig()
 	{
 		Compression = TextureCompressionSettings::TC_Default;
@@ -385,6 +388,7 @@ struct FglTFRuntimeImagesConfig
 		bSRGB = false;
 		MaxWidth = 0;
 		MaxHeight = 0;
+		bNeverStream = true;
 	}
 };
 
