@@ -1,3 +1,8 @@
+# OLD FORGE
+
+This is a checkpoint branch for old forge since 5.2.0 will be rebased upstream and some old obosolote features will be removed for ease of use
+
+
 # glTFRuntime
 Unreal Engine Plugin for loading glTF files at runtime (supports UE >= 4.25 and UE5) 
 
