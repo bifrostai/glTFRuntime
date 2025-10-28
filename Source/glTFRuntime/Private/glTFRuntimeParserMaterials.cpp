@@ -430,12 +430,13 @@ UTexture2D* FglTFRuntimeParser::BuildTexture(UObject* Outer, const TArray<FglTFR
 #endif
 
 #if !WITH_EDITOR
-		// this is a hack for allowing texture streaming without messing around with deriveddata
-#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7
-		Mip->BulkData.SetBulkDataFlags(BULKDATA_PayloadInSeparateFile);
-#else
-		Mip->BulkData.SetBulkDataFlags(BULKDATA_PayloadInSeperateFile);
-#endif
+		// Mark bulk data as not inline to allow streaming (makes IsInlined() return false)
+		// This is a better HACK than the previous one using IsSeparateFile() which causes
+		// a lot of spam in TextureDerivedData.cpp (Loading non-streamed mips from an external bulk file)
+		if (ImagesConfig.bStreaming)
+		{
+			Mip->BulkData.SetBulkDataFlags(BULKDATA_PayloadAtEndOfFile);
+		}
 #endif
 		Mip->BulkData.Lock(LOCK_READ_WRITE);
 
@@ -549,12 +550,13 @@ UVolumeTexture* FglTFRuntimeParser::BuildVolumeTexture(UObject* Outer, const TAr
 #endif
 
 #if !WITH_EDITOR
-		// this is a hack for allowing texture streaming without messing around with deriveddata
-#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 7
-		Mip->BulkData.SetBulkDataFlags(BULKDATA_PayloadInSeparateFile);
-#else
-		Mip->BulkData.SetBulkDataFlags(BULKDATA_PayloadInSeperateFile);
-#endif
+		// Mark bulk data as not inline to allow streaming (makes IsInlined() return false)
+		// This is a better HACK than the previous one using IsSeparateFile() which causes
+		// a lot of spam in TextureDerivedData.cpp (Loading non-streamed mips from an external bulk file)
+		if (ImagesConfig.bStreaming)
+		{
+			Mip->BulkData.SetBulkDataFlags(BULKDATA_PayloadAtEndOfFile);
+		}
 #endif
 		Mip->BulkData.Lock(LOCK_READ_WRITE);
 
