@@ -404,6 +404,8 @@ UTexture2D* FglTFRuntimeParser::BuildTexture(UObject* Outer, const TArray<FglTFR
 
 	Texture->LODBias = (ImagesConfig.LODBias >= 0 && ImagesConfig.LODBias < (Mips.Num() - 1)) ? ImagesConfig.LODBias : 0;
 	Texture->NeverStream = !ImagesConfig.bStreaming;
+	// glTFRuntime always supplies raw pixel data (never platform-tiled), regardless of streaming mode.
+	Texture->bNotOfflineProcessed = true;
 
 	if (ImagesConfig.bStreaming)
 	{
@@ -523,6 +525,8 @@ UVolumeTexture* FglTFRuntimeParser::BuildVolumeTexture(UObject* Outer, const TAr
 
 	Texture->LODBias = (ImagesConfig.LODBias >= 0 && ImagesConfig.LODBias < (Mips.Num() - 1)) ? ImagesConfig.LODBias : 0;
 	Texture->NeverStream = !ImagesConfig.bStreaming;
+	// glTFRuntime always supplies raw pixel data (never platform-tiled), regardless of streaming mode.
+	Texture->bNotOfflineProcessed = true;
 
 	if (ImagesConfig.bStreaming)
 	{
