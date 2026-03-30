@@ -798,7 +798,7 @@ struct FglTFRuntimeMaterialsConfig
 		CacheMode = EglTFRuntimeCacheMode::ReadWrite;
 		bGeneratesMipMaps = false;
 		bMergeSectionsByMaterial = false;
-		SpecularFactor = 0;
+		SpecularFactor = 0.5f;
 		bDisableVertexColors = false;
 		bMaterialsOverrideMapInjectParams = false;
 		bSkipLoad = false;
@@ -2051,6 +2051,9 @@ public:
 
 #if ENGINE_MAJOR_VERSION >= 5
 	virtual bool WillProvideMipDataWithoutDisk() const override { return true; }
+#if ENGINE_MINOR_VERSION >= 7
+	virtual bool ShouldAllowPlatformTiling(const UTexture* Owner) const override { return false; }
+#endif
 #endif
 
 };
